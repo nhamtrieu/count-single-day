@@ -44,6 +44,10 @@ const fullMoonsEl = document.getElementById('fullMoons');
 const coffeeBtn = document.getElementById('coffeeBtn');
 const movieBtn = document.getElementById('movieBtn');
 
+// Theme toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
 let countInterval = null;
 let lastUnlockedMilestone = -1;
 
@@ -51,6 +55,7 @@ let lastUnlockedMilestone = -1;
 function init() {
     createParticles();
     renderBadges();
+    loadTheme();
 
     // Check localStorage for saved date
     const savedDate = localStorage.getItem('singleStartDate');
@@ -72,6 +77,9 @@ function init() {
     // Click counters
     coffeeBtn.addEventListener('click', () => incrementCounter('coffees', coffeesEl));
     movieBtn.addEventListener('click', () => incrementCounter('movies', moviesEl));
+
+    // Theme toggle
+    themeToggle.addEventListener('click', toggleTheme);
 
     // Set max date to today
     const today = new Date().toISOString().split('T')[0];
@@ -277,6 +285,22 @@ function incrementCounter(key, element) {
     setTimeout(() => {
         element.style.transform = 'scale(1)';
     }, 150);
+}
+
+// ===== Theme Toggle =====
+function loadTheme() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    themeIcon.textContent = saved === 'light' ? '🌙' : '☀️';
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    themeIcon.textContent = next === 'light' ? '🌙' : '☀️';
+    showToast(next === 'light' ? '☀️ Chế độ sáng' : '🌙 Chế độ tối');
 }
 
 // ===== Handle Reset =====

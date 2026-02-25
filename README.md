@@ -2,7 +2,7 @@
 
 > ⚠️ **Lưu ý:** Repository này được tạo **hoàn toàn bằng AI Agent** (Antigravity by Google DeepMind).
 
-Một ứng dụng web đếm ngày độc thân với giao diện đẹp mắt, huy hiệu thành tựu, và thống kê vui.
+Một ứng dụng web đếm ngày độc thân với giao diện đẹp mắt, huy hiệu thành tựu, và thống kê.
 
 ## 🌐 Demo
 
@@ -13,9 +13,10 @@ Một ứng dụng web đếm ngày độc thân với giao diện đẹp mắt,
 - **📅 Nhập ngày bắt đầu** - Chọn ngày bạn bắt đầu độc thân
 - **⏱️ Đếm thời gian real-time** - Hiển thị năm, tháng, ngày, giờ, phút, giây
 - **🏆 13 Huy hiệu thành tựu** - 5 cấp bậc: Bronze → Silver → Gold → Diamond → Legendary
-- **🎲 Thống kê vui** - Số ly cà phê, phim đã xem, tiền tiết kiệm được
+- **📊 Thống kê** - Đếm số ly cà phê, phim đã xem một mình, đêm trăng tròn đã qua
+- **🌗 Đổi theme** - Chuyển đổi giữa giao diện sáng và tối
 - **💾 Lưu dữ liệu** - Sử dụng localStorage, dữ liệu không mất khi reload trang
-- **🎨 Giao diện premium** - Dark theme, glassmorphism, particle background, glow effects
+- **🎨 Giao diện premium** - Glassmorphism, particle background, glow effects
 - **📱 Responsive** - Hoạt động tốt trên mọi thiết bị
 
 ## 🏅 Các cột mốc huy hiệu

@@ -28,6 +28,41 @@
     --radius-sm: 8px;
     --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.1);
+    --counter-item-bg: rgba(255, 255, 255, 0.03);
+    --counter-item-border: rgba(255, 255, 255, 0.05);
+    --total-days-bg: rgba(255, 107, 157, 0.08);
+    --total-days-border: rgba(255, 107, 157, 0.15);
+    --badge-bg: rgba(255, 255, 255, 0.02);
+    --badge-border: rgba(255, 255, 255, 0.05);
+    --toast-bg: rgba(20, 20, 50, 0.95);
+}
+
+[data-theme="light"] {
+    --bg-primary: #f0f0f8;
+    --bg-secondary: #e8e8f2;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-card-hover: rgba(255, 255, 255, 0.95);
+    --text-primary: #1a1a2e;
+    --text-secondary: #555570;
+    --text-muted: #8888a0;
+    --accent-pink: #e84580;
+    --accent-purple: #a855f7;
+    --accent-blue: #3b82f6;
+    --shadow-glow: 0 0 30px rgba(168, 85, 247, 0.15);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --card-border: rgba(0, 0, 0, 0.06);
+    --input-bg: rgba(0, 0, 0, 0.03);
+    --input-border: rgba(0, 0, 0, 0.12);
+    --counter-item-bg: rgba(0, 0, 0, 0.02);
+    --counter-item-border: rgba(0, 0, 0, 0.06);
+    --total-days-bg: rgba(232, 69, 128, 0.06);
+    --total-days-border: rgba(232, 69, 128, 0.15);
+    --badge-bg: rgba(0, 0, 0, 0.01);
+    --badge-border: rgba(0, 0, 0, 0.06);
+    --toast-bg: rgba(255, 255, 255, 0.95);
 }
 
 html {
@@ -83,6 +118,37 @@ body {
     text-align: center;
     padding: 3rem 0 2rem;
     animation: fadeInDown 0.8s ease-out;
+    position: relative;
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--card-border);
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(196, 113, 245, 0.3);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
 }
 
 .hero-icon {
@@ -121,7 +187,7 @@ body {
     background: var(--bg-card);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--card-border);
     border-radius: var(--radius-lg);
     padding: 2rem;
     margin-bottom: 1.5rem;
@@ -132,7 +198,7 @@ body {
 
 .card:hover {
     background: var(--bg-card-hover);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--card-border);
     transform: translateY(-2px);
     box-shadow: var(--shadow-glow);
 }
@@ -172,8 +238,8 @@ body {
     flex: 1;
     min-width: 200px;
     padding: 0.9rem 1.2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: var(--input-bg);
+    border: 2px solid var(--input-border);
     border-radius: var(--radius-md);
     color: var(--text-primary);
     font-family: var(--font);
@@ -188,8 +254,11 @@ body {
 }
 
 .date-input::-webkit-calendar-picker-indicator {
-    filter: invert(0.8);
     cursor: pointer;
+}
+
+[data-theme="light"] .date-input::-webkit-calendar-picker-indicator {
+    filter: none;
 }
 
 /* ===== Buttons ===== */
@@ -266,9 +335,9 @@ body {
     align-items: center;
     min-width: 70px;
     padding: 1rem 0.8rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--counter-item-bg);
     border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--counter-item-border);
 }
 
 .counter-value {
@@ -301,9 +370,9 @@ body {
 .total-days {
     text-align: center;
     padding: 1rem;
-    background: rgba(255, 107, 157, 0.08);
+    background: var(--total-days-bg);
     border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 107, 157, 0.15);
+    border: 1px solid var(--total-days-border);
     margin-bottom: 1rem;
 }
 
@@ -338,8 +407,8 @@ body {
     align-items: center;
     padding: 1.5rem 1rem;
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.02);
-    border: 2px solid rgba(255, 255, 255, 0.05);
+    background: var(--badge-bg);
+    border: 2px solid var(--badge-border);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
@@ -472,9 +541,9 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 1.2rem;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--counter-item-bg);
     border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--counter-item-border);
     transition: var(--transition);
 }
 
@@ -556,7 +625,7 @@ body {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: rgba(20, 20, 50, 0.95);
+    background: var(--toast-bg);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 215, 0, 0.3);
     border-radius: var(--radius-md);
