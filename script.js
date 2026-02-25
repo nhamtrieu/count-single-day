@@ -38,8 +38,11 @@ const totalDaysEl = document.getElementById('totalDays');
 // Fun stats elements
 const coffeesEl = document.getElementById('coffees');
 const moviesEl = document.getElementById('movies');
-const moneySavedEl = document.getElementById('moneySaved');
 const fullMoonsEl = document.getElementById('fullMoons');
+
+// Clickable counters
+const coffeeBtn = document.getElementById('coffeeBtn');
+const movieBtn = document.getElementById('movieBtn');
 
 let countInterval = null;
 let lastUnlockedMilestone = -1;
@@ -56,12 +59,19 @@ function init() {
         startCounting(savedDate);
     }
 
+    // Load saved click counters
+    loadClickCounters();
+
     // Event listeners
     startBtn.addEventListener('click', handleStart);
     resetBtn.addEventListener('click', handleReset);
     dateInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleStart();
     });
+
+    // Click counters
+    coffeeBtn.addEventListener('click', () => incrementCounter('coffees', coffeesEl));
+    movieBtn.addEventListener('click', () => incrementCounter('movies', moviesEl));
 
     // Set max date to today
     const today = new Date().toISOString().split('T')[0];
@@ -242,24 +252,31 @@ function updateBadges(totalDays) {
 
 // ===== Update Fun Stats =====
 function updateFunStats(totalDays) {
-    // Avg 2 coffees per day
-    coffeesEl.textContent = (totalDays * 2).toLocaleString('vi-VN');
-    
-    // Avg 1 movie per 3 days
-    moviesEl.textContent = Math.floor(totalDays / 3).toLocaleString('vi-VN');
-    
-    // Avg 200k VND saved per day (no dates!)
-    const saved = totalDays * 200000;
-    if (saved >= 1000000000) {
-        moneySavedEl.textContent = (saved / 1000000000).toFixed(1) + ' tỷ';
-    } else if (saved >= 1000000) {
-        moneySavedEl.textContent = (saved / 1000000).toFixed(1) + ' triệu';
-    } else {
-        moneySavedEl.textContent = saved.toLocaleString('vi-VN');
-    }
-    
     // Full moon cycle ~ 29.5 days
     fullMoonsEl.textContent = Math.floor(totalDays / 29.5).toLocaleString('vi-VN');
+}
+
+// ===== Click Counters =====
+function loadClickCounters() {
+    const coffees = parseInt(localStorage.getItem('count_coffees') || '0');
+    const movies = parseInt(localStorage.getItem('count_movies') || '0');
+    coffeesEl.textContent = coffees.toLocaleString('vi-VN');
+    moviesEl.textContent = movies.toLocaleString('vi-VN');
+}
+
+function incrementCounter(key, element) {
+    const storageKey = `count_${key}`;
+    let count = parseInt(localStorage.getItem(storageKey) || '0');
+    count++;
+    localStorage.setItem(storageKey, count);
+    element.textContent = count.toLocaleString('vi-VN');
+    
+    // Pop animation
+    element.style.transform = 'scale(1.4)';
+    element.style.transition = 'transform 0.15s ease';
+    setTimeout(() => {
+        element.style.transform = 'scale(1)';
+    }, 150);
 }
 
 // ===== Handle Reset =====
@@ -274,6 +291,8 @@ function handleReset() {
     }
 
     lastUnlockedMilestone = -1;
+    localStorage.removeItem('count_coffees');
+    localStorage.removeItem('count_movies');
     dateInput.value = '';
 
     // Reset display

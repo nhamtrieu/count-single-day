@@ -483,6 +483,32 @@ body {
     transform: translateY(-3px);
 }
 
+.fun-item.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.fun-item.clickable:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px rgba(196, 113, 245, 0.2);
+}
+
+.fun-item.clickable:active {
+    transform: scale(0.95);
+}
+
+.fun-hint {
+    font-size: 0.65rem;
+    color: var(--accent-purple);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-top: 0.3rem;
+}
+
+.fun-item.clickable:hover .fun-hint {
+    opacity: 1;
+}
+
 .fun-icon {
     font-size: 2rem;
     margin-bottom: 0.5rem;
