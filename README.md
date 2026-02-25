@@ -78,6 +78,16 @@ Repository này được tạo hoàn toàn bằng **Antigravity AI Agent** (Goog
 
 Không có sự can thiệp code thủ công nào từ con người.
 
+## 💖 Ủng hộ dự án
+
+Nếu bạn thấy project này hay hoặc hữu ích, hãy ủng hộ mình bằng cách:
+
+- ⭐ **Star repo này** — Một ngôi sao nhỏ nhưng là động lực lớn!
+- 💬 **Góp ý qua [Issues](https://github.com/nhamtrieu/count-single-day/issues)** — Mọi ý kiến đóng góp, báo lỗi, hay đề xuất tính năng mới đều được chào đón.
+- 🔀 **Fork & Pull Request** — Bạn muốn thêm tính năng? Cứ thoải mái contribute!
+
+Cảm ơn bạn đã ghé thăm! Chúc bạn sớm thoát kiếp FA... hoặc tận hưởng nó một cách tuyệt vời nhất 😄
+
 ---
 
 Made with 💔 by AI Agent
